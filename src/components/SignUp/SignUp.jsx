@@ -18,20 +18,22 @@ const Login = () => {
   });
 
   onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (currentUser) navigate("/netflix");
+    if (currentUser) navigate("/login");
   });
 
   const handleSignin = async () => {
     try {
       const { email, password } = Values;
       await createUserWithEmailAndPassword(firebaseAuth, email, password);
-    } catch {}
+    } catch {
+      alert("User not found");
+    }
   };
   return (
     <Container showPassword={showPassword}>
       <Background />
       <div className="content">
-        <Header SignIn />
+        <Header Login />
         <div className="body flex column a-center j-center">
           <div className="text flex column">
             <h1>Unlimited movies, TV shows and more</h1>
